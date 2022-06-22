@@ -24,7 +24,8 @@ public class HelloTraceV1 {
     public void end(TraceStatus status) {
         complete(status, null);
     }
-
+    
+    //예외처리
     public void exception(TraceStatus status, Exception e) {
         complete(status, e);
     }
@@ -33,6 +34,7 @@ public class HelloTraceV1 {
         Long stopTimeMs = System.currentTimeMillis();
         long resultTimeMs = stopTimeMs - status.getStartTimeMs();
         TraceId traceId = status.getTraceId();
+
         if (e == null) {
             log.info("[{}] {}{} time={}ms", traceId.getId(),
                 addSpace(COMPLETE_PREFIX, traceId.getLevel()), status.getMessage(),
